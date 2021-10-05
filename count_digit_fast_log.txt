@@ -1,0 +1,2 @@
+n = 4578;
+int digit_count = floot(log10(n)) + 1

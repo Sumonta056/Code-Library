@@ -1,0 +1,6 @@
+to_integer()
+
+stoi()
+
+stol()
+string to long int

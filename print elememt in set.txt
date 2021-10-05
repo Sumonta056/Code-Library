@@ -1,0 +1,3 @@
+for (auto it = myset.begin(); it != 
+                             myset.end(); ++it)
+        cout << ' ' << *it;

@@ -1,0 +1,5 @@
+x=10^20;
+
+ Wrong : char c[100000000000000]
+
+correct ; char [20] ; 

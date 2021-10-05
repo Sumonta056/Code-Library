@@ -1,0 +1,11 @@
+if pow c with a , b 
+x = pow a , c
+y = pow b , c
+
+if x > y -- - - a > b
+x  <  y  --- a< b
+
+if (c % 2 == 0)
+        a = abs(a), b = abs(b);
+
+if negative number this should be applu -  abc205c

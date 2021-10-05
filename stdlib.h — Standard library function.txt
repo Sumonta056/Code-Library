@@ -1,0 +1,13 @@
+https://www.ibm.com/docs/en/zos/2.3.0?topic=files-stdlibh-standard-library-functions
+
+abort()	abs()[1,3]	alloca()[1]	atexit()	atof()
+atoi()	atol()	bsearch()	calloc()	cds()[1]
+clearenv()	cs()[1]	csid()	div()[3]	exit()
+fetch()[2]	fetchep()[2]	free()	getenv()	labs()
+ldiv()	llabs()	lldiv()	__librel()	malloc()
+mblen()	mbstowcs()	mbtowc()	__moservices()	qsort()
+rand()	realloc()	release()[2]	rpmatch()	setenv()
+srand()	strtod()	strtol()	strtoll()	strtoul()
+strtoull()	system()	unatexit()	wcsid()	wcstombs()
+wctomb()	strtod32()[4]	strtod64()[4]	strtod128()[4]	 
+_UNIX03_SOURCE

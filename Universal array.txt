@@ -1,0 +1,17 @@
+we can use this in any function without any problem
+help ful dp
+
+
+#include<bits/stdc++.h>
+
+typedef long long ln
+ln dp[1000000]
+
+
+int main()
+{
+
+
+
+
+}

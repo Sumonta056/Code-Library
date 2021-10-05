@@ -1,0 +1,4 @@
+We can check the number is power of 2 or not directly using this logic.
+
+x = 1024;
+bool check = x && (!(x & (x-1))); //if this is true, then power of two.

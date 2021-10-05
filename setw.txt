@@ -1,0 +1,3 @@
+cout<<setw(5)<<pp<<setw(5)<<ll;'
+
+    pp     ll

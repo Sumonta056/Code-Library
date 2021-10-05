@@ -1,0 +1,4 @@
+1516A - Tit for Tat
+The general approach to minimizing an array lexicographically is to try to make the first element as small as possible, then the second element, and so on. So greedily, in each operation, we'll pick the first non-zero element and subtract 1 from it, and we'll add that 1 to the very last element. You can make the implementation faster by doing as many operations as you can on the first non-zero element simultaneously, but it's not necessary.
+
+Code link: https://pastebin.com/pBsychs2

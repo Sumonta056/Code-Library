@@ -1,0 +1,13 @@
+You are given a sequence s of n characters (, ), and/or ?. There is exactly one character ( and exactly one character ) in this sequence.
+
+You have to replace every character ? with either ) or ( (different characters ? can be replaced with different brackets).
+ You cannot reorder the characters, remove them, insert other characters, and each ? must be replaced.
+
+so i stuck at this coner case ()))
+but i didnot notice that in question is given --- There is exactly one character ( and exactly one character ) in this sequence.
+
+that means there will not be such case because  in (  ) situation ther will always be e ? 
+the case will be (?))
+this type
+
+quesition should care fully

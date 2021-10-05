@@ -1,0 +1,10 @@
+string str;
+cin>>str;
+
+
+regex d("WUB");
+cout<<regex_replace(str , d , " ");
+
+
+WUBWUBABWUBC     
+  AB C

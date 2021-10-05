@@ -1,0 +1,26 @@
+A good use of auto is to avoid long initializations when creating iterators for container
+
+int main() 
+{ 
+    // Create a set of strings 
+    set<string> st; 
+    st.insert({ "geeks", "for", "geeks", "org" }); 
+  
+    // 'it' evaluates to iterator to set of string 
+    // type automatically 
+    for (auto it = st.begin(); it != st.end(); it++) 
+        cout << *it << " "; 
+  
+    return 0; 
+} 
+
+
+
+
+
+
+vector<int>arr = {1,2,3,4,5,7};
+
+set<int>s {arr.begin(), arr.end()};
+
+auto it = s.lower_bound(6);

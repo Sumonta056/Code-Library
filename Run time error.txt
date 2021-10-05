@@ -1,0 +1,4 @@
+ 1 . array size problem
+ 2 . == or any sign problem
+ 3 . loop error
+ 4 . size is more than expected

@@ -1,0 +1,5 @@
+ char a = '2';
+ int num = a-48;
+Here, 48 is the ASCII value of 0. What is done here is the second line a-48 
+implicitly converts char a to its ASCII equivalent
+ and then subtracts it from 48 (50-48) that results in integer value 2.

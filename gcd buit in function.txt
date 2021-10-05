@@ -1,0 +1,3 @@
+__gcd(x, y) //find GCD of x and y
+The maximum size of an array in main function is of the order of 10^6.
+ But if the array is declared globally, we can declare the size up to 10^7.

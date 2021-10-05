@@ -1,0 +1,3 @@
+dp is actually the recursion of your past
+
+in dp you can actually remeber something you done in past so donot have to do the samething again and again

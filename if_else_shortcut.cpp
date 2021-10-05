@@ -1,0 +1,1 @@
+cout << (good? "YEs" : "nO") << '\n';

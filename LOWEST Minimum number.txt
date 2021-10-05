@@ -1,0 +1,6 @@
+int i ;
+
+
+i = INT_MIN;
+
+it is the lowest number in c++

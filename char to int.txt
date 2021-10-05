@@ -1,0 +1,3 @@
+char a = 'A';
+ int num = (int) a;
+In this case, ‘num’ will have the value 65 which is ASCII equivalent of character ‘A’.

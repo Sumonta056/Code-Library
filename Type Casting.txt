@@ -1,0 +1,11 @@
+int m = 2 ;
+
+double p ;
+ p = m/2
+ 
+
+as both m and 2 is integer data type
+result will be p is also integer
+
+so we have to use type casting  method
+p = (double) m  /2;

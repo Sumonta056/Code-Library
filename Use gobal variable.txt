@@ -1,0 +1,11 @@
+  
+#include <cstdio>
+using namespace std;
+
+int N;         // using global variables in contests can be a good strategy
+char x[110];  // make it a habit to set array size a bit larger than needed
+
+int main() {
+  scanf("%d\n", &N);
+  
+} 

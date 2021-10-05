@@ -1,0 +1,23 @@
+https://www.cplusplus.com/reference/cstdlib/
+
+Convert string to double (function )
+atoi
+Convert string to integer (function )
+atol
+Convert string to long integer (function )
+atoll 
+Convert string to long long integer (function )
+strtod
+Convert string to double (function )
+strtof 
+Convert string to float (function )
+strtol
+Convert string to long integer (function )
+strtold 
+Convert string to long double (function )
+strtoll 
+Convert string to long long integer (function )
+strtoul
+Convert string to unsigned long integer (function )
+strtoull 
+Convert string to unsigned long long integer (function )
