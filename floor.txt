@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     double x = 10.25, result;
-    result = ceil(x); // ans will be 11
-    cout << "Ceil of " << x << " = " << result << endl;
+    result = floor(x); // ans will be 10
+    cout << "floor of " << x << " = " << result << endl;
     return 0;
 }
