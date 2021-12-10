@@ -1,11 +1,4 @@
-#include <iostream>
-#include <cstring>
-#include <string>
-#include <fstream>
-using namespace std;
-int main()
-{
-    fstream myfile;
+ fstream myfile;
     myfile.open("Data_Name.txt", ios::in);
     if (!myfile)
     {
@@ -16,8 +9,8 @@ int main()
         string x;
         while (1)
         {
-            // *  myfile >> x;      // * reading operation by word
-            getline(myfile, x);
+             myfile >> x;      // * reading operation by word
+            // *getline(myfile, x);
             if (myfile.eof()) // * loop continues untill the end of file reaches too
                 break;
             cout << x << endl;
@@ -25,5 +18,3 @@ int main()
         }
     }
     myfile.close();
-    return 0;
-}

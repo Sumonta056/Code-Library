@@ -11,11 +11,12 @@ int main()
 
     // * take whole line a input
     cin.getline(arr, 100);
+    string s = "10";
 
     // ! out for write operation
     fstream myfile("Data_Name.txt", ios::out);
     // * myfile.open("Data_Name.txt") ;
-    myfile << arr;
+    myfile << arr << " " <<s ;
     myfile.close();
 
     cout << "done" << endl;
