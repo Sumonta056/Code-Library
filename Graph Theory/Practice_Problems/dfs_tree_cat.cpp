@@ -102,46 +102,65 @@ ll mod_add(ll a, ll b)
 
 ll node, edge;
 
-ll t = 1;
-vector<ll> sTime(N), eTime(N);
-
-vector<ll> traverse;        // * traversing track
 vector<ll> adj[N];
 vector<bool> visited(N, 0); // * color type
 
-void dfs(ll cNode)
+ll cat[N];
+ll Count = 0;
+ll numberOfConsecutiveCats;
+
+void dfs(ll cNode, ll sumOfCats)
 {
-    traverse.pb(cNode);
 
-    visited[cNode] = 1;   // * black
+    ll sum = 0;
+    visited[cNode] = 1; // * make it visited
 
-    sTime[cNode] = t++;
+    if (sumOfCats > numberOfConsecutiveCats)
+        return;
+
+    bool leafNotPossible = false;
 
     for (ll i = 0; i < adj[cNode].size(); i++)
     {
+        //cout << visited[adj[cNode][i]] << endl;
         if (!visited[adj[cNode][i]]) // * check white
         {
-            dfs(adj[cNode][i]);
+            cat[adj[cNode][i]] ? sum = sumOfCats + 1 : sum = 0;
+
+            
+            dfs(adj[cNode][i], sum);
+
+            leafNotPossible = true;
         }
     }
 
-    eTime[cNode] = t++;
+    if (!leafNotPossible)
+        Count++;
 }
 int main()
 {
-    fast;
-    cin >> node >> edge;
+    // * a tree is a connected graph with n = nodes , n-1 = edge
+    cin >> node;
 
-    for (ll i = 0; i < edge; i++)
+    // edge = node - 1;
+
+    cin >> numberOfConsecutiveCats;
+
+    for (int i = 1; i <= node; i++)
+    {
+        cin >> cat[i];
+    }
+
+    for (ll i = 1; i < node; i++)
     {
         ll a, b;
         cin >> a >> b;
 
         adj[a].pb(b);
-        adj[b].pb(a); 
+        adj[b].pb(a);
     }
 
-    dfs(0); 
+    dfs(1, cat[1]);
 
-    
+    cout << Count << endl;
 }

@@ -99,49 +99,85 @@ ll mod_add(ll a, ll b)
 }
 
 #define N 1000004
-
 ll node, edge;
 
-ll t = 1;
-vector<ll> sTime(N), eTime(N);
+// * using map for size helping
+// * If dont know the total size
 
-vector<ll> traverse;        // * traversing track
-vector<ll> adj[N];
-vector<bool> visited(N, 0); // * color type
+map<int, int> dis;
+map<int, int> visited;
 
-void dfs(ll cNode)
+map<int , vector<int>> adj ;
+
+ll Count;
+
+void bfs(int sNode, int length)
 {
-    traverse.pb(cNode);
+    Count = 0;
+    dis.clear();
+    visited.clear();
+    // parent[sNode] = -1;
+    dis[sNode] = 0;
 
-    visited[cNode] = 1;   // * black
+    queue<ll> q;
+    q.push(sNode);
 
-    sTime[cNode] = t++;
-
-    for (ll i = 0; i < adj[cNode].size(); i++)
+    while (!q.empty())
     {
-        if (!visited[adj[cNode][i]]) // * check white
-        {
-            dfs(adj[cNode][i]);
-        }
-    }
+        ll cNode = q.front();
+        q.pop();
 
-    eTime[cNode] = t++;
+        for (ll i = 0; i < adj[cNode].size(); i++)
+        {
+            if (!visited[adj[cNode][i]])
+            {
+                visited[adj[cNode][i]] = 1;
+                // parent[adj[cNode][i]] = cNode;
+                dis[adj[cNode][i]] = dis[cNode] + 1;
+
+                if (dis[adj[cNode][i]] > length)
+                    Count++;
+
+                q.push(adj[cNode][i]);
+            }
+        }
+
+        visited[cNode] = 1;
+    }
 }
 int main()
 {
-    fast;
-    cin >> node >> edge;
 
-    for (ll i = 0; i < edge; i++)
+    int n, j = 1;
+
+    while (cin >> n)
     {
-        ll a, b;
-        cin >> a >> b;
+        if (n == 0)
+            return 0 ;
 
-        adj[a].pb(b);
-        adj[b].pb(a); 
+        edge  = n ;
+
+        for (ll i = 0; i < edge; i++)
+        {
+            ll a, b;
+            cin >> a >> b;
+
+            adj[a].pb(b);
+            adj[b].pb(a);
+        }
+
+        int startNode, ttl;
+        while (cin >> startNode >> ttl)
+        {
+            if (startNode == 0 && ttl == 0)
+                break;
+
+            bfs(startNode, ttl);
+
+            int ans = Count + adj.size() - visited.size() ;
+            cout << "Case " <<j<<": " <<ans << " nodes not reachable from node "<<startNode <<" with TTL = "<<ttl <<"." <<endl;
+            j++ ;
+        }
+        adj.clear();
     }
-
-    dfs(0); 
-
-    
 }

@@ -99,37 +99,42 @@ ll mod_add(ll a, ll b)
 }
 
 #define N 1000004
-
 ll node, edge;
 
-ll t = 1;
-vector<ll> sTime(N), eTime(N);
+vector<ll> dis(N), parent(N);
 
-vector<ll> traverse;        // * traversing track
-vector<ll> adj[N];
-vector<bool> visited(N, 0); // * color type
+vector<bool> visited(N, 0);
+vector<vector<ll>> adj(N);
 
-void dfs(ll cNode)
+void bfs(ll sNode)
 {
-    traverse.pb(cNode);
+    parent[sNode] = -1;
+    dis[sNode] = 0;
 
-    visited[cNode] = 1;   // * black
+    queue<ll> q;
+    q.push(sNode);
 
-    sTime[cNode] = t++;
-
-    for (ll i = 0; i < adj[cNode].size(); i++)
+    while (!q.empty())
     {
-        if (!visited[adj[cNode][i]]) // * check white
-        {
-            dfs(adj[cNode][i]);
-        }
-    }
+        ll cNode = q.front();
+        q.pop();
 
-    eTime[cNode] = t++;
+        for (ll i = 0; i < adj[cNode].size(); i++)
+        {
+            if (!visited[adj[cNode][i]])
+            {
+                parent[adj[cNode][i]] = cNode;
+                dis[adj[cNode][i]] = dis[cNode] + 1;
+
+                q.push(adj[cNode][i]);
+            }
+        }
+
+        visited[cNode] = 1;
+    }
 }
 int main()
 {
-    fast;
     cin >> node >> edge;
 
     for (ll i = 0; i < edge; i++)
@@ -141,7 +146,7 @@ int main()
         adj[b].pb(a); 
     }
 
-    dfs(0); 
+    bfs(0); 
 
     
 }
