@@ -1,55 +1,57 @@
+/* Topological order may not exist if the graph contains cycle.
+And may have multiple solutions of topological sort in one graph */
+//! it is for directed acyclic graph
+// Time Complexity: O (V + E)
+// Tutorial: https://cp-algorithms.com/graph/topological-sort.html
+
 #include <bits/stdc++.h>
 using namespace std;
 //
 #define ll long long
 #define ull unsigned long long
+#define pb push_back
 #define mx 100010
 #define mod 1000000007
 #define inf INT_MAX
-#define pi acos(-1.0)
+#define pi acos(-1)
 #define endl '\n'
-#define pb push_back
-#define pll pair<ll, ll>
-#define vll vector<ll>
-#define vpll vector<pll>
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(0);                       \
-    cout.tie(0)
+#define fin freopen("input", "r", stdin)
+#define Fast ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 //
-const ll node = 101;
-ll adj[node][node], weight = 0;
-vll visited(node, 0), adj1[node];
+ll node, edge;
+vector<bool> visited(mx, 0);
+vector<vector<ll>> adj(mx);
+stack<ll> tSort;
 
-void dfs(ll cNode, ll prv)
-{
-    if (visited[cNode])
-        return;
+void dfs(ll cNode) {
     visited[cNode] = 1;
-    ll child = adj1[cNode][0] == prv ? adj1[cNode][1] : adj1[cNode][0];
-    weight += adj[cNode][child];
-    dfs(child, cNode);
-}
-int main()
-{
-    ll n;
-    cin >> n;
-    for (ll i = 0; i < n; i++)
-    {
-        ll a, b, w;
-        cin >> a >> b >> w;
-        // adj[a][b] = w;
-        adj[b][a] = w;
-        adj1[a].pb(b);
-        adj1[b].pb(a);
+    for (ll i : adj[cNode]) {
+        if (!visited[i]) dfs(i);
     }
-    ll res = inf;
-    dfs(1, adj1[1][1]);
-    res = weight;
-    weight = 0;
-    visited.clear();
-    visited.assign(node, 0);
-    dfs(1, adj1[1][0]);
-    res = min(res, weight);
-    cout << res << endl;
+
+    tSort.push(cNode); // after visiting a node pushing it into the stack
+}
+void dfsVisit() {
+    // should start dfs from every node which is not visited yet.
+    for (ll i = 0; i < node; i++) {
+        if (!visited[i]) dfs(i);
+    }
+}
+
+int main() {
+    cin >> node >> edge;
+    for (ll i = 0; i < edge; i++) {
+        ll eFrom, eTo;
+        cin >> eFrom >> eTo;
+        adj[eFrom].pb(eTo); // directed edge
+    }
+
+    dfsVisit();
+
+    // printing topological sort
+    cout << "\nTopological sort: ";
+    while(!tSort.empty()) {
+        cout << tSort.top() << " ";
+        tSort.pop();
+    }
 }
