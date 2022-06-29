@@ -36,6 +36,7 @@ using namespace std;
 #define alls(a) (a).begin(), (a).end()
 #define sz(x) (int)x.size()
 
+#define Size(s) s.length()
 #define all(v) (v.begin, v.end)
 #define rev(v) reverse(v.begin, v.end)
 #define srt(v) sort(v.begin, v.end)
@@ -74,12 +75,15 @@ using namespace std;
 #define inf 1000000000000000005
 #define INF numeric_limits<ll>::max();
 #define NINF numeric_limits<ll>::min();
-const int N = int(1e5 + 3);
 
-#define fo(i, a, b) for (int i = a; i <= b; i++)
+#define foi(i, a, b) for (int i = a; i < b; i++)
+#define foI(i, a, b) for (int i = a; i <= b; i++)
+#define fol(i, a, b) for (ll i = a; i < b; i++)
+#define foL(i, a, b) for (ll i = a; i <= b; i++)
 
 //* char a = 'A';   int num = (int) a;
 //* char a = '2';   int num = a-48;
+//* char a = '8';   int num = a - '0' ;  (  s[i]-'0' == 8 )
 
 ll mod_mul(ll a, ll b)
 {
@@ -94,42 +98,36 @@ ll mod_add(ll a, ll b)
     return (((a + b) % mod) + mod) % mod;
 }
 
-int main()
+const int N = int(1e5 + 3);
+vector<ll> prime(N); // * initial all value = 0 considering all value prime
+
+void generate()
 {
-    fast;
+    prime[0] = 1;
+    prime[1] = 1; // * 1 means not prime
 
-    int t;
-    cin >> t;
-
-    while (t--)
+    ll i = 2;
+    while (i * i <= N)
     {
-        int n, k;
-        cin >> n >> k;
 
-       ector<int> v;
-        for (int i = 1; i <= sqrt(n); i++)
+        if (prime[i] == 1)
         {
-            if (n % i == 0)
-            {
-                if (n / i == i)
-                    v.push_back(i);
-                else
-                {
-                    v.push_back(i);
-                    v.push_back(n / i);
-                }
-            }
-        } v
-
-        ll sum = 0;
-
-        for (int i = 0; i < v.size(); i++)
-        {
-            //cout << v[i]<<endl;
-            if (v[i] % k != 0)
-                sum = sum + v[i];
+            i++;
+            continue;
         }
 
-        cout << sum << endl;
+        ll j = 2 * i;
+        while (j < N)
+        {
+            is_prime[j] = 1;
+            j += i;
+        }
+
+        i++;
     }
-}
+
+    int main()
+    {
+        fast;
+        generate();
+    }
