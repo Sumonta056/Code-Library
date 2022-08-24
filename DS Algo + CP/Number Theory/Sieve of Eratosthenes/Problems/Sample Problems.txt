@@ -1,0 +1,11 @@
+sieve :
+
+https://leetcode.com/problems/count-primes/
+
+https://codeforces.com/contest/26/problem/A
+
+https://codeforces.com/problemset/problem/17/A
+
+
+
+

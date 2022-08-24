@@ -36,6 +36,7 @@ using namespace std;
 #define alls(a) (a).begin(), (a).end()
 #define sz(x) (int)x.size()
 
+#define Size(s) s.length()
 #define all(v) (v.begin, v.end)
 #define rev(v) reverse(v.begin, v.end)
 #define srt(v) sort(v.begin, v.end)
@@ -76,10 +77,14 @@ using namespace std;
 #define NINF numeric_limits<ll>::min();
 const int N = int(1e5 + 3);
 
-#define fo(i, a, b) for (int i = a; i <= b; i++)
+#define foi(i, a, b) for (int i = a; i < b; i++)
+#define foI(i, a, b) for (int i = a; i <= b; i++)
+#define fol(i, a, b) for (ll i = a; i < b; i++)
+#define foL(i, a, b) for (ll i = a; i <= b; i++)
 
 //* char a = 'A';   int num = (int) a;
 //* char a = '2';   int num = a-48;
+//* char a = '8';   int num = a - '0' ;  (  s[i]-'0' == 8 )
 
 ll mod_mul(ll a, ll b)
 {
@@ -103,33 +108,56 @@ int main()
 
     while (t--)
     {
-        int n, k;
-        cin >> n >> k;
+        string s;
+        cin >> s;
 
-       vector<int> v;
-        for (int i = 1; i <= sqrt(n); i++)
+        vector<int> characterArray(200, 0);
+        int charaters = 0;
+        int days = 0;
+
+        for (int i = 0; i < s.length(); i++)
         {
-            if (n % i == 0)
+            char c = s[i];
+            int value = (int)c;
+
+            if (charaters < 3)
             {
-                if (n / i == i)
-                    v.push_back(i);
-                else
+
+                if (characterArray[value] == 0)
                 {
-                    v.push_back(i);
-                    v.push_back(n / i);
+                    charaters++;
+                    characterArray[value]++;
                 }
+
+                else
+                    characterArray[value]++;
             }
-        } 
 
-        ll sum = 0;
+            else
+            {
 
-        for (int i = 0; i < v.size(); i++)
-        {
-            //cout << v[i]<<endl;
-            if (v[i] % k != 0)
-                sum = sum + v[i];
+                if (characterArray[value] == 0)
+                {
+                    days++;
+                    //cout << days <<sp << c <<endl;
+
+                    charaters = 0;
+                    // * check
+                    characterArray.clear();
+                    characterArray.assign(200, 0);
+
+                    charaters++;
+                    characterArray[value]++;
+                }
+
+                else
+                    continue;
+            }
         }
 
-        cout << sum << endl;
+        if (charaters != 0)
+            days++;
+
+        cout << days << endl;
     }
 }

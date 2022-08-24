@@ -1,48 +1,29 @@
-vectorname.assign(int size, int value)
+void assign (size_type n, const value_type& val);
 
-Parameters: 
-size - number of values to be assigned
-value - value to be assigned to the vectorname
+Parameters
+n − Size of vector.
 
-
-vector<int> v;
-    v.assign(7, 100);
-
-Size of first: 7
-Elements are
-100
-100
-100
-100
-100
-100
-100
-
-vector<int> v1;
-    int a[] = { 1, 2, 3 };
- 
-    // assign first 2 values
-    v1.assign(a, a + 2)
-
-Elements of vector1 are
-1 2   
+val − Value for each element.
 
 
-// * 2d vector
+#include <iostream>
+#include <vector>
 
-typedef vector<int> vi;
+using namespace std;
 
-vector<vi> AdjList;
-V = number of row
-AdjList.assign(V, vi());
+int main(void) {
+   vector<int> v1;
 
-AdjList[u].push_back(v);
-			AdjList[v].push_back(u);
+   cout << "Initial size  = " << v1.size() << endl;
 
+   /* 5 integers with value = 100 */
+   v1.assign(5, 100);
 
-for (int j = 0; j < (int) AdjList[u].size(); j++) 
-            {
-				int v = AdjList[u][j];
-				cout << v << endl;
-			}
+   cout << "Modified size = " << v1.size() << endl;
 
+   /* display vector values */
+   for (int i = 0; i < v1.size(); ++i)
+      cout << v1[i] << endl;
+
+   return 0;
+}

@@ -36,6 +36,7 @@ using namespace std;
 #define alls(a) (a).begin(), (a).end()
 #define sz(x) (int)x.size()
 
+#define Size(s) s.length()
 #define all(v) (v.begin, v.end)
 #define rev(v) reverse(v.begin, v.end)
 #define srt(v) sort(v.begin, v.end)
@@ -48,8 +49,8 @@ using namespace std;
         cout << i << " "; \
     cout << endl;
 
-#define max3(a, b, c) max(max((a), (b)), (c))
-#define min3(a, b, c) min(min((a), (b)), (c))
+#define max3(a,b,c) max(max((a),(b)),(c))
+#define min3(a,b,c) min(min((a),(b)),(c))
 
 #define cin(n) cin >> n
 #define cin2(a, b) cin >> a >> b;
@@ -76,60 +77,41 @@ using namespace std;
 #define NINF numeric_limits<ll>::min();
 const int N = int(1e5 + 3);
 
-#define fo(i, a, b) for (int i = a; i <= b; i++)
+#define foi(i, a, b) for (int i = a; i < b; i++)
+#define foI(i, a, b) for (int i = a; i <= b; i++)
+#define fol(i, a, b) for (ll i = a; i < b; i++)
+#define foL(i, a, b) for (ll i = a; i <= b; i++)
 
 //* char a = 'A';   int num = (int) a;
 //* char a = '2';   int num = a-48;
+//* char a = '8';   int num = a - '0' ;  (  s[i]-'0' == 8 )
 
-ll mod_mul(ll a, ll b)
+ll mod_mul(ll a, ll b) {a = a % mod; b = b % mod; return (((a * b) % mod) + mod) % mod;}
+ll mod_add(ll a, ll b) {a = a % mod; b = b % mod; return (((a + b) % mod) + mod) % mod;}
+
+// * Euclidean Algorithm 
+ll GCD(ll a, ll b)
 {
-    a = a % mod;
-    b = b % mod;
-    return (((a * b) % mod) + mod) % mod;
+    if (b == 0)
+        return a;
+    else
+        return GCD(b, a % b);
 }
-ll mod_add(ll a, ll b)
+
+ll LCM(ll a, ll b)
 {
-    a = a % mod;
-    b = b % mod;
-    return (((a + b) % mod) + mod) % mod;
+    ll gcd = GCD(a, b);
+    return (a / gcd) * b;
 }
 
 int main()
 {
     fast;
 
-    int t;
-    cin >> t;
+    // * notes 
 
-    while (t--)
-    {
-        int n, k;
-        cin >> n >> k;
-
-       vector<int> v;
-        for (int i = 1; i <= sqrt(n); i++)
-        {
-            if (n % i == 0)
-            {
-                if (n / i == i)
-                    v.push_back(i);
-                else
-                {
-                    v.push_back(i);
-                    v.push_back(n / i);
-                }
-            }
-        } 
-
-        ll sum = 0;
-
-        for (int i = 0; i < v.size(); i++)
-        {
-            //cout << v[i]<<endl;
-            if (v[i] % k != 0)
-                sum = sum + v[i];
-        }
-
-        cout << sum << endl;
-    }
+    // !  gcd(a,b) ⋅ lcm(a,b) = a⋅b 
+    // !  gcd(x,x+1) = 1
+    // !  lcm(x,x+1) = x ⋅ (x+1)
+    
 }
