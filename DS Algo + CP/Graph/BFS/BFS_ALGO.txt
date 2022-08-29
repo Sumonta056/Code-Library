@@ -1,0 +1,5 @@
+// BFS = Breadth First Search
+
+Task 1: Starts from source Node
+Task 2: Go to neighbours Node using adjcancy list and traverse
+

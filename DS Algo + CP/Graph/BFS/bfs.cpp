@@ -11,50 +11,60 @@
 
 */
 #include <bits/stdc++.h>
-#include <list>
 using namespace std;
 
+#define ll long long
+#define endl '\n'
+#define sp " "
+#define enter cout << endl;
 #define fast                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
     cout.tie(NULL)
 
-#define ll long long int
-
 class Graph
 {
-    // * 0 -> (1 , 20)
-    // ? node1 -> (node2 , weight)
-    unordered_map<ll, list<pair<ll, ll>>> l;
+    // * change type if needed
+    map<int , list<int>> l;
 
-    // ! if you want to get sorted order use "map"
-
-public:
-    void addEdge(ll node1, ll node2, ll weight)
+    public:
+    void addEdge(int node1 , int node2)
     {
-        l[node1].push_back(make_pair(node2, weight));
+        // * undirected graph
+        l[node1].push_back(node2);
+        l[node2].push_back(node1);
     }
 
-    void printList()
+    void bfs(int source)
     {
-        //* (pair it : l)
-        for (auto it : l)
-        {
-            ll node = it.first;
-            list<pair<ll, ll>> neighbour = it.second;
+        map<int,bool>visited ;                    
+        queue <int > q ;
 
-            cout << "Node :" << node << "->";
-            for(auto i : neighbour)
+        // * start from source node
+        q.push(source) ;                
+        visited[source] = true;
+
+        // * traversal
+        while( !q.empty())
+        {
+            int currNode = q.front();
+            q.pop();
+
+            cout << currNode << sp ;
+
+            for(int neighbour : l[currNode])
             {
-                ll node2 = i.first;
-                ll weight = i.second;
-                
-                cout<<"("<<node2<<","<<weight<<") ";
+                if(visited[neighbour] == false)
+                {
+                    q.push(neighbour);
+                    visited[neighbour] = true ;
+                }
             }
-            cout << endl;
         }
+
     }
 };
+    
 
 int main()
 {
@@ -62,35 +72,19 @@ int main()
 
     ll node , edge ;
     cin >> node >> edge ;
-
-    // * create class object
-    // ? node can start form 0 or 1 doesn't matter
+   
     Graph g;
-
+    
     // * take graph edges
     for(ll i = 0 ; i < edge ;i++)
     {
         ll x , y ; // * x = node1 , y = node2
-        ll z ;     // * z = weight
-        cin >> x >> y >> z;
+        cin >> x >> y ;
 
-        g.addEdge(x,y,z);
+        g.addEdge(x,y);
     }
 
-    g.printList(); 
+    // * start BFS(start node)
+    g.bfs(0);    
+    
 }
-
-/*
-
-4 9
-0 1 20
-1 0 20
-1 3 30
-3 1 30
-0 2 10
-2 0 10
-2 3 40
-3 2 40
-0 3 50
-
-*/
