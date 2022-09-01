@@ -27,6 +27,9 @@ class Graph
     // * change type if needed
     map<int , list<int>> l;
 
+    // * store dfs traversal node track
+    vector<int> traverse;
+
     public:
     void addEdge(int node1 , int node2)
     {
@@ -35,36 +38,52 @@ class Graph
         l[node2].push_back(node1);
     }
 
-    void bfs(int source)
+    // ? using "&" cause we want map remains for all function calls
+    // * recursive function to traverse the graph
+    void dfs_traverse(int currNode , map <int , bool> &visited)
+    {
+        //cout << currNode << sp;
+        traverse.push_back(currNode) ;
+
+        // * make the node visited
+        visited[currNode] = true ;
+
+        // * go to all neigbours node that is not visited
+        for(auto neighbour : l[currNode])
+        {
+            if(!visited[neighbour])
+            {
+                // * visit that neighbour if not visited 
+                // * and also visits the neighbour's neigbour node like recursive function
+                dfs_traverse(neighbour,visited); 
+            }
+        }
+
+    }
+
+    void dfs(int source)
     {
         map<int,bool>visited ;  // * map <node , state > visited
                                // * if state = 0 ; node not visited - either visited
                                // * initial all state = 0
-        queue <int > q ;
 
-        // * start from source node
-        q.push(source) ;              // * pushing source node queue  
-        visited[source] = true;       // * marking the source node visited
-
-        // * traversal graph from source 
-        while( !q.empty())
+        // * initial make all nodes not visited
+        for(auto it : l)
         {
-            int currNode = q.front();  // * set current node
-            q.pop();                    // * delete the node from queue
-
-            cout << currNode << sp ;
-
-            for(int neighbour : l[currNode])    // * find the neighbours of current node
-            {
-                if(visited[neighbour] == false) // * check the neighbour is already visited or not :if visited nothing to do
-                {
-                    q.push(neighbour);           // * if not visited push to queue
-                    visited[neighbour] = true ;  // * mark the node visited
-                }
-            }
-            // * travers like this untill the node visited
+            int node = it.first ;
+            visited[node] = false ; // * make node not visited by false
         }
 
+        // * traverse the graph 
+        dfs_traverse(source , visited) ;
+
+        // * print the traversal
+        //enter;
+        for(auto node : traverse)
+        {
+            cout << node << sp ;
+        }
+        enter ;
     }
 };
     
@@ -87,14 +106,14 @@ int main()
         g.addEdge(x,y);
     }
 
-    // * start BFS(start node)
-    g.bfs(0);    
+    // * start DFS(start node)
+    g.dfs(0);    
     
 }
 /*
 6 6
-0 1
 0 3
+0 1
 1 2
 2 3
 3 4

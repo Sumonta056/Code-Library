@@ -8,8 +8,10 @@ https://codeforces.com/problemset/problem/17/A
 
 https://codeforces.com/contest/776/problem/B
 
+https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=484
 
+https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1252
 
+https://www.spoj.com/problems/TDPRIMES/
 
-
-
+https://www.spoj.com/problems/PRIME1/
