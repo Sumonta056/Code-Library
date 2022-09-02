@@ -22,41 +22,62 @@ using namespace std;
     cin.tie(NULL);                    \
     cout.tie(NULL)
 
-void SieveOfEratosthenes(ll n)
-{
-    n++;
-    vector<bool> is_prime(n + 1, true);
+ll maxSize = 10e6;
+vector<ll> primes;
+vector<bool> isprime(maxSize, true);
 
-    for (ll p = 2; p <= n; p++)
+void sieve()
+{
+    for (ll i = 3; i * i <= maxSize; i++)
     {
-        if (is_prime[p] == true)
+        if (isprime[i] == true)
         {
-            for (ll i = p * p; i <= n; i += p)
-                is_prime[i] = false;
+            for (ll j = i * i; j <= maxSize; j += i)
+            {
+                isprime[j] = false;
+            }
         }
     }
 
-    if (n - 1 > 2)
-        cout << 2 << endl;
-    else
-        cout << 1 << endl;
+    primes.push_back(2);
 
-    for (ll p = 2; p <= n; p++)
+    for (ll i = 3; i <= maxSize; i += 2)
     {
-        if (is_prime[p])
-            cout << "1 ";
-        else
-            cout << "2 ";
+        if (isprime[i] == true)
+            primes.push_back(i);
     }
-
-    cout << endl;
 }
 
-// Driver Code
 int main()
 {
-    ll n;
-    cin >> n;
-    SieveOfEratosthenes(n);
+    fast;
+    sieve();
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        ll n, k;
+        cin >> n >> k;
+        ll choice = 0;
+        ll gfLikes = 0;
+        
+        for (int i = 0; i < n; i++)
+        {
+            ll temp = primes[i] * primes[i];
+            if (temp > n)
+                break;
+            else
+            {
+                choice++;
+                if (temp > k)
+                    gfLikes++;
+            }
+        }
+
+        cout << choice << sp << gfLikes << endl;
+    }
+
     return 0;
 }

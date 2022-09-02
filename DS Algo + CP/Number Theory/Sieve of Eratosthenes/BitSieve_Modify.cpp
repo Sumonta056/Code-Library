@@ -64,7 +64,7 @@ void sieve()
     // * as 2 is prime
     prime.push_back(2);
 
-    // * prllother primes
+    // * print other primes
     for (ll i = 3; i <= N; i += 2)
     {
         if (check(status[i / 32], i % 32) == 0)

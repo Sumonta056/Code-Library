@@ -3,6 +3,7 @@ using namespace std;
 
 #define ll long long int
 
+
 void divisor( ll n )
 {
     vector<ll> storeDivisor;
