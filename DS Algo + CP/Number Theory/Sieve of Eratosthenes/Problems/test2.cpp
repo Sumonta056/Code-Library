@@ -1,85 +1,85 @@
-    //        ** Sumonta Saha Mridul **                                    SWE - SUST
-    /*
+//        ** Sumonta Saha Mridul **                                    SWE - SUST
+/*
 
-    *        ######    ##     ##  ##     ##   #######   ##    ##   ########      ###
-    !       ##    ##   ##     ##  ###   ###  ##     ##  ###   ##      ##        ## ##
-    ?       ##         ##     ##  #### ####  ##     ##  ####  ##      ##       ##   ##
-    *        ######    ##     ##  ## ### ##  ##     ##  ## ## ##      ##      ##     ##
-    !             ##   ##     ##  ##     ##  ##     ##  ##  ####      ##      #########
-    ?       ##    ##   ##     ##  ##     ##  ##     ##  ##   ###      ##      ##     ##
-    *        ######     #######   ##     ##   #######   ##    ##      ##      ##     ##
+*        ######    ##     ##  ##     ##   #######   ##    ##   ########      ###
+!       ##    ##   ##     ##  ###   ###  ##     ##  ###   ##      ##        ## ##
+?       ##         ##     ##  #### ####  ##     ##  ####  ##      ##       ##   ##
+*        ######    ##     ##  ## ### ##  ##     ##  ## ## ##      ##      ##     ##
+!             ##   ##     ##  ##     ##  ##     ##  ##  ####      ##      #########
+?       ##    ##   ##     ##  ##     ##  ##     ##  ##   ###      ##      ##     ##
+*        ######     #######   ##     ##   #######   ##    ##      ##      ##     ##
 
-    */
-    #include <bits/stdc++.h>
-    using namespace std;
+*/
+#include <bits/stdc++.h>
+using namespace std;
 
-    #define ll long long
-    #define endl '\n'
-    #define sp " "
-    #define enter cout << endl;
-    #define fast                          \
-        ios_base::sync_with_stdio(false); \
-        cin.tie(NULL);                    \
-        cout.tie(NULL)
+#define ll long long
+#define endl '\n'
+#define sp " "
+#define enter cout << endl;
+#define fast                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);                    \
+    cout.tie(NULL)
 
-    ll maxSize = 10e6;
-    vector<ll> primes;
-    vector<bool> isprime(maxSize, true);
-    vector<ll> ans;
+ll n = 9999999;
+set<ll> ans;
+vector<bool> is_prime(n + 1, true);
 
-    void sieve()
+void Sieve()
+{
+    
+    is_prime[0] = is_prime[1] = false;
+
+    for (ll p = 2; p * p <= n; p++)
     {
-        for (ll i = 3; i * i <= maxSize; i++)
+        if (is_prime[p] == true)
         {
-            if (isprime[i] == true)
+            for (ll i = p * p; i <= n; i += p)
+                is_prime[i] = false;
+        }
+    }
+
+    for (ll i = 1; i * i <= n; i++)
+    {
+        for (ll j = 1; (j * j) * (j * j) <= n; j++)
+        {
+            ll value = (i * i) + ((j * j) * (j * j));
+
+            if( value > n) break;
+
+            if (is_prime[value] == true)
             {
-                for (ll j = i * i; j <= maxSize; j += i)
-                {
-                    isprime[j] = false;
-                }
+                ans.insert(value);
+                //cout << value << sp << i << sp << j << endl;
             }
-        }
-
-        primes.push_back(2);
-
-        for (ll i = 3; i <= maxSize; i += 2)
-        {
-            if (isprime[i] == true)
-                primes.push_back(i);
+            
         }
     }
 
-    void sol()
+}
+
+int main()
+{
+    fast;
+    Sieve();
+
+    int t;
+    cin >> t;
+
+    while (t--)
     {
-        ll size = primes.size();
-        for (ll i = 0; i < size - 1; i++)
+        ll x;
+        cin >> x;
+
+        ll count = 0 ;
+        for(ll p : ans)
         {
-            for (ll j = i + 1; j < size; j++)
-            {
-                ll mul = primes[i] * primes[j];
-                if(mul > 10527449) break; // no need extra calculation
-                ans.push_back(mul);
-                // cout << mul << endl;
-            }
+            if( p > x) break;
+
+            count++;
         }
 
-        sort(ans.begin() , ans.end());
+        cout << count << endl;
     }
-
-    int main()
-    {
-        fast;
-        sieve();
-        sol();
-        //cout << ans.size() <<endl;
-        int t;
-        cin >> t;
-
-        while (t--)
-        {
-            ll x;
-            cin >> x;
-
-            cout << ans[x - 1] << endl;
-        }
-    }
+}

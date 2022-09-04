@@ -35,10 +35,7 @@ using namespace std;
 void SieveOfEratosthenes(ll n)
 {
     
-    //* iniial all true and prime
     vector<bool> is_prime(n+1, true);
-    
-    //* 0 , 1 is not prime
     is_prime[0] = is_prime[1] = false;
  
     for (ll p = 2; p * p <= n; p++) 
@@ -50,13 +47,7 @@ void SieveOfEratosthenes(ll n)
         }
     }
  
-    // Print all prime numbers
-    ll countPrime = 0 ;
-    for (ll p = 2; p <= n; p++)
-        if (is_prime[p])
-            countPrime++ ;
-
-    cout <<"Number of Prime : " << countPrime  << endl ;
+   
 }
  
 // Driver Code
