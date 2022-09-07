@@ -30,6 +30,7 @@ ll gcd(ll a, ll b)
     return gcd(b, a % b);
 }
 
+// * ( a* b ) / gcd(a, b )
 ll  lcm(ll a, ll b)
 {
     return a / gcd(a, b) * b;
