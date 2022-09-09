@@ -1,0 +1,3 @@
+https://cp-algorithms.com/algebra/extended-euclid-algorithm.html
+
+https://forthright48.com/extended-euclidean-algorithm
