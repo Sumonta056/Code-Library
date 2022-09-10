@@ -1,0 +1,2 @@
+https://forthright48.com/euler-totient-or-phi-function
+https://cp-algorithms.com/algebra/phi-function.html
