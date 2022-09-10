@@ -22,50 +22,58 @@ using namespace std;
     cin.tie(NULL);                    \
     cout.tie(NULL)
 
-ll gcd(ll a, ll b)
+void primefactorization(ll n, ll k)
 {
-    if (b == 0)
-        return a;
+    vector<ll> factors;
+    bool track = false;
+
+    for (ll i = 2; i * i <= n;)
+    {
+        if (factors.size() == k - 1)
+        {
+            track = true;
+            factors.push_back(n);
+            break;
+        }
+        if (n % i == 0)
+        {
+            factors.push_back(i);
+            n /= i;
+        }
+
+        else
+        {
+            i++;
+        }
+    }
+
+    if (n > 1 && !track)
+    {
+        factors.push_back(n);
+    }
+
+    // * print
+    if (factors.size() == k)
+    {
+        for(auto it : factors)
+        {
+            cout << it << " ";
+        }
+    }
     else
-        return gcd(b, a % b);
+        cout << -1 << endl;
 }
 
 int main()
 {
     fast;
 
-    ll n;
-    cin >> n;
+    ll n, k;
+    cin >> n >> k;
 
-    vector<ll> arr(n);
-    vector<ll> ans;
-
-    ll change = 0;
-
-    for (ll i = 0; i < n; i++)
-        cin >> arr[i];
-
-    ll i;
-    for (i = 0; i < n - 1; i++)
-    {
-        if (gcd(arr[i], arr[i + 1]) != 1)
-        {
-            change++;
-
-            ans.push_back(arr[i]);
-            ans.push_back(1); // * any value with 1 is always co prime
-        }
-
-        else
-        {
-            ans.push_back(arr[i]);
-        }
-    }
-    ans.push_back(arr[i]);
-    
-    cout << change << endl;
-    for (auto it : ans)
-    {
-        cout << it << " ";
-    }
+    primefactorization(n, k);
 }
+
+//* char a = 'A';   int num = (int) a;
+//* char a = '2';   int num = a-48;
+//* char a = '8';   int num = a - '0' ;  (  s[i]-'0' == 8 )

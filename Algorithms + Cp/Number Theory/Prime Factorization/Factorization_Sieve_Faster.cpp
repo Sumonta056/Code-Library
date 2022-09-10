@@ -74,7 +74,7 @@ int main()
 {
     fast;
     sieve();
-    factorize(980);
+    factorize(100000);
 
     cout << factors.size() << endl;
     for (auto it : factors)

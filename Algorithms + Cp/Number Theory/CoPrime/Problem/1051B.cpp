@@ -22,50 +22,20 @@ using namespace std;
     cin.tie(NULL);                    \
     cout.tie(NULL)
 
-ll gcd(ll a, ll b)
-{
-    if (b == 0)
-        return a;
-    else
-        return gcd(b, a % b);
-}
-
 int main()
 {
     fast;
 
-    ll n;
-    cin >> n;
+    ll l, r;
+    cin >> l >> r;
 
-    vector<ll> arr(n);
-    vector<ll> ans;
+    cout << "YES" << endl;
 
-    ll change = 0;
-
-    for (ll i = 0; i < n; i++)
-        cin >> arr[i];
-
-    ll i;
-    for (i = 0; i < n - 1; i++)
+    for (int i = 0; i < (r - l) / 2 + 1; i++)
     {
-        if (gcd(arr[i], arr[i + 1]) != 1)
-        {
-            change++;
+        ll value1 = l + i * 2;
+        ll value2 = l + i * 2 + 1;
 
-            ans.push_back(arr[i]);
-            ans.push_back(1); // * any value with 1 is always co prime
-        }
-
-        else
-        {
-            ans.push_back(arr[i]);
-        }
-    }
-    ans.push_back(arr[i]);
-    
-    cout << change << endl;
-    for (auto it : ans)
-    {
-        cout << it << " ";
+        cout << value1 << sp << value2 << endl;
     }
 }
