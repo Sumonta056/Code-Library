@@ -22,41 +22,50 @@ using namespace std;
     cin.tie(NULL);                    \
     cout.tie(NULL)
 
-// * Euler's totient function, also known as phi-function
-// * counts the number of integers between 1 and inclusive, which are coprime to n
-
-// * Time Complexity: O(Root(n))
-
-ll phi(ll n)
+ll gcd(ll a, ll b)
 {
-    ll result = n;
-
-    // if( n == 1) return 1 ;
-    // if (n == 0) return 0 ;
-
-    for (ll i = 2; i * i <= n; i++)
-    {
-        if (n % i == 0)
-        {
-            while (n % i == 0)
-            {
-                n /= i;
-            }
-            result -= result / i;
-        }
-    }
-
-    if( n > 1)
-    {
-        result -= result / n;
-    }
-
-    return result;
+    if (b == 0)
+        return a;
+    else
+        return gcd(b, a % b);
 }
 
 int main()
 {
     fast;
 
-    cout << phi(10) << endl;
+    ll n;
+    cin >> n;
+
+    vector<ll> arr(n);
+    vector<ll> ans;
+
+    ll change = 0;
+
+    for (ll i = 0; i < n; i++)
+        cin >> arr[i];
+
+    ll i;
+    for (i = 0; i < n - 1; i++)
+    {
+        if (gcd(arr[i], arr[i + 1]) != 1)
+        {
+            change++;
+
+            ans.push_back(arr[i]);
+            ans.push_back(1);
+        }
+
+        else
+        {
+            ans.push_back(arr[i]);
+        }
+    }
+    ans.push_back(arr[i]);
+    
+    cout << change << endl;
+    for (auto it : ans)
+    {
+        cout << it << " ";
+    }
 }
