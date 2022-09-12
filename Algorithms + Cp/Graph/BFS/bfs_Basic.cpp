@@ -62,7 +62,7 @@ class Graph
                     visited[neighbour] = true ;  // * mark the node visited
                 }
             }
-            // * travers like this untill the node visited
+            // * traverse like this untill the node visited
         }
 
     }
