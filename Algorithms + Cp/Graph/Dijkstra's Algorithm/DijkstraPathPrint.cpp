@@ -66,6 +66,10 @@ public:
         //? < node , distance >
         unordered_map<ll, ll> dis;
 
+        // * for printing path and track the parent of child nodes
+        ll highestnode = 1000;
+        vector<ll> parent(highestnode, 0); // * initial all nodes parent is 0
+
         // * initial set all distance inifinity
         for (auto its : l)
         {
@@ -76,9 +80,9 @@ public:
         // * Make a set to find out minimum distance
         // ? <distance , node>
         // * cause auto sort of distance
-        set< pair<ll, ll> > s;
+        set<pair<ll, ll>> s;
 
-        dis[source] = 0;     // make source node to source node distance 0
+        dis[source] = 0;                // make source node to source node distance 0
         s.insert(make_pair(0, source)); // inserting source node in set with distance
 
         // * traverse untill set empty
@@ -113,59 +117,93 @@ public:
                     // * insert new pair
                     dis[destination] = nodeDist + neighbor.second;
                     s.insert(make_pair(dis[destination], destination));
+
+                    parent[destination] = currNode;
+                    // * set the parent node of child
+                    // * for which node this child came from
                 }
             }
         }
 
         // * lets print distance to all node from source
-
         for (auto i : dis)
         {
+            // ! part 1 
             //  * distance from source
-            cout << "dis From " << source << " to " << i.first << " = " << i.second << endl;
+            cout << "Distance From " << source << " to " << i.first << " = " << i.second << endl;
+            cout << "Path : ";
+
+            // ! part 2
+            // * for printing path
+            int presentNode = i.first;
+            // cout << presentNode << endl;
+            vector<ll> path;
+            path.push_back(presentNode); // * pushing the destination node
+
+            // * traverse untill parent node 0 found cz for source node parent is set 0 which never gonna change
+            while (parent[presentNode] != 0)
+            {
+                path.push_back(parent[presentNode]); // * pushing the parent of current node
+                presentNode = parent[presentNode];   // * set the parent node as current node
+            }
+
+            reverse(path.begin(), path.end());       // * reverse the path for better understand
+
+            for (auto node : path)
+                cout << node << sp;
+
+            cout << endl;
+
+            // checking parent nodes
+            // cout << endl;
+            // for (int i = 1; i <= dis.size(); i++)
+            // {
+            //     cout << i << sp << parent[i] << endl;
+            // }
         }
     }
 };
 
-// * weighted Graph
-// * non negative edge
-// * Directed and undirected graphs
-int main()
-{
-    fast;
-
-    ll node, edge;
-    cin >> node >> edge;
-
-    // * create class object
-    // ? node can start form 0 or 1 doesn't matter
-    Graph g;
-
-    // * take graph edges
-    for (ll i = 0; i < edge; i++)
+    // * weighted Graph
+    // * non negative edge
+    // * Directed and undirected graphs
+    int main()
     {
-        ll x, y; // * x = node1 , y = node2
-        ll z;    // * z = weight
-        cin >> x >> y >> z;
+        fast;
 
-        g.addEdge(x, y, z);
+        ll node, edge;
+        cin >> node >> edge;
+
+        // * create class object
+        // ? node can start form 0 or 1 doesn't matter
+        Graph g;
+
+        // * take graph edges
+        for (ll i = 0; i < edge; i++)
+        {
+            ll x, y; // * x = node1 , y = node2
+            ll z;    // * z = weight
+            cin >> x >> y >> z;
+
+            g.addEdge(x, y, z);
+        }
+
+        g.printList();
+        cout << endl;
+
+        g.dijkstra(1);
+
+        return 0;
     }
 
-    g.printList();
-    cout << endl;
+    /*
+    6 7
+    1 2 4
+    1 3 1
+    2 3 2
+    2 4 8
+    3 6 1
+    4 5 3
+    5 6 2
 
-    g.dijkstra(1);
-
-    return 0;
-}
-
-/*
-6 7
-1 2 4
-1 3 1
-2 3 2
-2 4 8
-3 6 1
-4 5 3
-5 6 2
-*/
+    */

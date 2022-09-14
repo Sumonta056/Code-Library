@@ -76,10 +76,10 @@ public:
         // * Make a set to find out minimum distance
         // ? <distance , node>
         // * cause auto sort of distance
-        set<pair<ll, ll>> s;
+        set< pair<ll, ll> > s;
 
-        dis[source] = 0;               // make source node to source node distance 0
-        s.insert(dis[source], source); // inserting source node in set with distance
+        dis[source] = 0;     // make source node to source node distance 0
+        s.insert(make_pair(0, source)); // inserting source node in set with distance
 
         // * traverse untill set empty
         while (!s.empty())
