@@ -30,26 +30,21 @@ using namespace std;
     ! Time complexity : O(n^3)
 */
 
-ll N = 4;
+ll N = 5;
 int main()
 {
     fast;
 
-    // * initialize the graph with all edges INI_MAX
-    // ! 0 nodes counts careful
     vector<int> init(N, INT_MAX);
     vector<vector<int>> adj(N, init);
 
-    ll node, edge;
-    cin >> node >> edge;
-
-    for (int i = 0; i < edge; i++)
-    {
-        ll node1, node2, weight;
-        cin >> node1 >> node2 >> weight;
-
-        adj[node1][node2] = weight;
-    }
+    // for (int i = 0; i < N; i++)
+    // {
+    //     for (int j = 0; j < N; j++)
+    //     {
+    //         adj[i].push_back(INT_MAX);
+    //     }
+    // }
 
     for (int i = 0; i < N; i++)
     {
