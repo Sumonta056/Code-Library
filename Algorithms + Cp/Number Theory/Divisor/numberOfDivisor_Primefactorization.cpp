@@ -1,0 +1,1 @@
+https://forthright48.com/number-of-divisors-of-integer
