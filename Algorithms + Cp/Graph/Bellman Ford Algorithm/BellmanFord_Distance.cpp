@@ -30,7 +30,7 @@ vector<ll> bellman_ford(ll node, ll source, vector<vector<ll>> adj)
 
     distance[source] = 0; // * Initial source node distance set to 0
 
-    // * Relax all edge (node - 1) times
+    // * Relaxing all edge (node - 1) times
     for (int i = 0; i < node - 1; i++)
     {
         for (auto edge : adj)
