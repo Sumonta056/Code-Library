@@ -43,7 +43,7 @@ bool check(ll index, ll position)
 ll setBit(ll index, ll position)
 {
     return index = index | (1 << position);
-    ;
+    
 }
 
 void sieve()
@@ -57,6 +57,8 @@ void sieve()
             for (ll j = i * i; j <= N; j += (2 * i))
             {
                 status[j / 32] = setBit(status[j / 32], j % 32);
+                
+                if(i==3) cout << status[j / 32] << endl;
             }
         }
     }
@@ -73,10 +75,10 @@ void sieve()
 
     // cout << prime.size() <<endl;
 
-    for (int i = 0; i < prime.size(); i = i+100)
-    {
-        cout << prime[i] << endl;
-    }
+    // for (int i = 0; i < prime.size(); i = i+100)
+    // {
+    //     cout << prime[i] << endl;
+    // }
 }
 
 int main()

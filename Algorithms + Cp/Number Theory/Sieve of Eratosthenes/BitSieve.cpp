@@ -92,8 +92,8 @@ int main()
  * index = 0 binary = 0
  * 1 << position = 1 * 2^position  = then convert the ans in binary
  * 1 << 3 = 1 * 2^3 = 8  in binary 1000
- * 1 << 3 = 100
- * index & 1 << 3 = 0 * 1001  = 0 = ans
+ * 1 << 3 = 1000
+ * index & 1 << 3 = 0 * 1000  = 0 = ans
  * if ans == 0 the digit is prime
  ? now mark the multpies of 3
 
